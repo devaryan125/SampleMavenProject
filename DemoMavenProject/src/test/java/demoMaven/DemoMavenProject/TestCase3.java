@@ -1,19 +1,17 @@
 package demoMaven.DemoMavenProject;
 import static io.restassured.RestAssured.*;
 
-import io.restassured.http.Header;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import static org.hamcrest.Matchers.*;
 
-
 import org.testng.annotations.Test;
 
 public class TestCase3 {
+
 	 private String baseURI = "https://restful-booker.herokuapp.com";
 	 public int bookingid;
 	 public static String authtoken;
- 	Header authorization = new Header("Authorization", authtoken);
 	    
 	    //Create the booking request
 	    @Test(priority = 1)
@@ -32,7 +30,7 @@ public class TestCase3 {
 	            body("booking.lastname", equalTo("Brown")).extract().response();
 	        JsonPath res = response.jsonPath();
 	        bookingid = res.get("bookingid");
-	        System.out.println(bookingid);
+	        
 	    }
 	    
 	    // Get Auth token for PUT and DELETE
@@ -50,7 +48,7 @@ public class TestCase3 {
 	            extract().response();
 	        JsonPath res = response.jsonPath();
 	        authtoken = res.get("token");
-	        System.out.println(authtoken);
+	      
 	    }
 
 //	    //Update the booking request
